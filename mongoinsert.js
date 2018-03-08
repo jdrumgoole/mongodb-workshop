@@ -16,17 +16,22 @@ MongoClient.connect(url, function(err, client) {
     // Find some documents in our collection
 
     db = client.db( "MUGS" ) ;
-    db.collection('mug_groups').findOne({}, function(err, doc ) {
+    db.collection('test').insertOne({ "hello" : "World!"}, function(err, res ) {
 
-        // Print the documents returned
-       console.log( doc ) ;
+        if ( err ) {
+            console.log( err ) ;
+            process.exit( 1 )
+        } else {
+            console.log( `Inserted ${ res.insertedCount } document` ) ;
+            console.log( `objeectID : ${res.insertedId}`)
+        }
     });
 
     // Close the client
     client.close();
 
     // Declare success
-    console.log("Called findOne()");
+    console.log("Called insertOne()");
 });
 
 

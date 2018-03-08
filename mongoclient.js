@@ -7,15 +7,15 @@ const url = "mongodb://localhost:27017" ;
 
 mongoClient.connect( url, function( err, client ) {
     if ( err ) {
-        console.log( "Failed to connect") ;
+        console.log( "Failed to connect to :", url ) ;
         process.exit( 1 )
     } else {
         console.log( "Connected to:", url ) ;
     }
 
-    const adminDB = client.db( "admin")  ;
+    const testDB = client.db( "test")  ;
 
-    adminDB.command( { "isMaster" : 1 }, function( err, res ) {
+    testDB.command( { "isMaster" : 1 }, function( err, res ) {
         if (err ) {
             console.log("isMaster error")
         } else {
