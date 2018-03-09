@@ -2,6 +2,15 @@ var MongoClient = require('mongodb').MongoClient
 
 var url = 'mongodb://localhost:27017/MUGS';
 
+var cursorPrintURL = function ( err, doc ) {
+    if ( err ) {
+        throw err;
+    } else if (doc) {
+        console.log( doc.urlname );
+    };
+};
+
+
 MongoClient.connect(url, function(err, client) {
 
     if ( err ) {
@@ -17,7 +26,7 @@ MongoClient.connect(url, function(err, client) {
     db = client.db( "MUGS" ) ;
     cursor = db.collection('mug_groups').find({}) ;
 
-    cursor.forEach( ( doc ) => console.log( `URL: ${doc.urlname}` )) ;
+    cursor.each( ( err, doc ) => ( cursorPrintURL( err, doc ))) ;
 
     // Close the client
     client.close();
