@@ -2,15 +2,6 @@ var MongoClient = require('mongodb').MongoClient
 
 var url = 'mongodb://localhost:27017/MUGS';
 
-var cursorPrintURL = function ( err, doc ) {
-    if ( err ) {
-        throw err;
-    } else if (doc) {
-        console.log( doc.urlname );
-    };
-};
-
-
 MongoClient.connect(url, function(err, client) {
 
     if ( err ) {
@@ -24,12 +15,21 @@ MongoClient.connect(url, function(err, client) {
     // Find some documents in our collection
 
     db = client.db( "MUGS" ) ;
-    cursor = db.collection('mug_groups').find({}) ;
+    db.collection('mug_groups').find({}).toArray( function( err, docs ) {
 
-    cursor.each( ( err, doc ) => ( cursorPrintURL( err, doc ))) ;
+    if ( err ) {
+        console.log( err );
+        process.exit( 1 ) ;
+    } else {
+        for ( var i = 0; i < docs.length; i++)
+        {
+            console.log(docs[i].urlname)
+        }
+    }
 
     // Close the client
-    client.close();
+        client.close();
+    })
 
     // Declare success
     console.log("Called find()");
