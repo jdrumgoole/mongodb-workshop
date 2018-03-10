@@ -1,0 +1,23 @@
+{
+  "name": "mongodb-workshop",
+  "version": "1.0.0",
+  "description": "Repo for MongoDB Workshop code and data.",
+  "main": "mongoclient.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdrumgoole/mongodb-workshop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdrumgoole/mongodb-workshop/issues"
+  },
+  "homepage": "https://github.com/jdrumgoole/mongodb-workshop#readme",
+  "dependencies": {
+    "mongodb": "^3.0.4"
+  }
+}
