@@ -22,7 +22,7 @@ if __name__ == "__main__" :
 
     parser.add_argument( "--host", default="mongodb://localhost:27017" )
     parser.add_argument( "--sensor_name", default="manifold sensor")
-    parser.add_argument( "--drop", default=True )
+    parser.add_argument( "--drop", default=False )
 
     args = parser.parse_args()
     client = pymongo.MongoClient( host= args.host )

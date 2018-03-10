@@ -1,11 +1,10 @@
 var MongoClient = require('mongodb').MongoClient
 
-var url = 'mongodb://localhost:27017/MUGS';
+var url = 'mongodb://localhost:27017/IOTDB';
 
-var printURL = function( doc ) {
-    console.log( doc.urlname )
+var printTemp = function( doc ) {
+    console.log( `Name : ${doc.name} ${doc.temp}` )
 };
-
 MongoClient.connect(url, function(err, client) {
 
     if ( err ) {
@@ -18,16 +17,15 @@ MongoClient.connect(url, function(err, client) {
     //console.log( db ) ;
     // Find some documents in our collection
 
-    db = client.db( "MUGS" ) ;
-    cursor = db.collection('mug_groups').find({}) ;
+    db = client.db( "IOTDB" ) ;
+    changeStream = db.collection('sensor_data').watch() ;
 
-    cursor.forEach( printURL ) ;
-
-    // Close the client
-    client.close();
+    changeStream.on( "change", function( change ) {
+        console.log( change ) ;
+    } ) ;
 
     // Declare success
-    console.log("Called find()");
+    console.log("Called changeStream()");
 });
 
 
