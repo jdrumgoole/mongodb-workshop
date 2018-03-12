@@ -12,10 +12,6 @@ MongoClient.connect(url, function(err, client) {
         console.log("Successfully connected to server: ", url );
     }
 
-    //console.log( db ) ;
-    // Find some documents in our collection
-
-
     db = client.db( "MUGS" ) ;
 
     updater = { "$set" : { 'registration_url' : "eventbrite"}}
@@ -25,11 +21,11 @@ MongoClient.connect(url, function(err, client) {
         } else {
             console.log( `Modified ${res.modifiedCount }` )
         }
+        client.close();
     } );
-    client.close();
 
     // Declare success
-    console.log("Called updateMany()");
+    console.log("updateMany");
 });
 
 
