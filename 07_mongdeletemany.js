@@ -11,8 +11,6 @@ MongoClient.connect(url, function(err, client) {
         console.log("Successfully connected to server: ", url );
     }
 
-    //console.log( db ) ;
-    // Find some documents in our collection
 
     db = client.db( "test" ) ;
     db.collection('test').deleteMany({ "hello" : "World!"}, function(err, res ) {
@@ -23,13 +21,11 @@ MongoClient.connect(url, function(err, client) {
         } else {
             console.log( `deleted ${ res.deletedCount } document(s)` ) ;;
         }
+        // Close the client
+        client.close();
     });
 
-    // Close the client
-    client.close();
-
-    // Declare success
-    console.log("Called deleteMany()");
+    console.log("deleteMany");
 });
 
 

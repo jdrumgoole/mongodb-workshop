@@ -22,16 +22,14 @@ if __name__ == "__main__" :
 
     parser.add_argument( "--host", default="mongodb://localhost:27017" )
     parser.add_argument( "--sensor_name", default="manifold sensor")
-    parser.add_argument( "--drop", default=False )
+    parser.add_argument( "--count", default=1, type=int )
 
     args = parser.parse_args()
+    
     client = pymongo.MongoClient( host= args.host )
 
     db = client[ "IOTDB"] ;
 
-    if args.drop :
-        db.drop_collection( "sensor_data")
-        print( "Dropping collection sensor_data")
 
     collection = db[ "sensor_data"]
 

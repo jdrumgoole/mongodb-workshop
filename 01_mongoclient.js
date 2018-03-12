@@ -22,7 +22,9 @@ mongoClient.connect( url, function( err, client ) {
             console.log(res);
 
         }
-    })
-    client.close() ;
+        client.close() ;
+    });
+    console.log( "mongoClient") ;
+
 })
 

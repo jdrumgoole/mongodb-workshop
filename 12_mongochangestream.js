@@ -1,17 +1,29 @@
+
+const yargs = require( 'yargs') ;
+
 var MongoClient = require('mongodb').MongoClient
 
-var url = 'mongodb://localhost:27017/IOTDB';
+var uri = 'mongodb://localhost:27017/IOTDB';
 
 var printTemp = function( doc ) {
     console.log( `Name : ${doc.name} ${doc.temp}` )
 };
-MongoClient.connect(url, function(err, client) {
+
+const argv = yargs.argv ;
+
+if (argv.uri ) {
+    uri = argv.uri ;
+}
+
+console.log( "Using uri: ", uri ) ;
+
+MongoClient.connect(uri, function(err, client) {
 
     if ( err ) {
         console.log( err );
         process.exit( 1 ) ;
     } else {
-        console.log("Successfully connected to server: ", url );
+        console.log("Successfully connected to server: ", uri );
     }
 
     //console.log( db ) ;
@@ -25,7 +37,7 @@ MongoClient.connect(url, function(err, client) {
     } ) ;
 
     // Declare success
-    console.log("Called changeStream()");
+    console.log("changeStream");
 });
 
 

@@ -37,7 +37,7 @@ MongoClient.connect(url, function(err, client) {
         })
 
     // Declare success
-    console.log("Called find()");
+    console.log("aggregate");
 });
 
 

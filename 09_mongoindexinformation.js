@@ -14,15 +14,16 @@ mongoClient.connect( url, function( err, client ) {
     }
 
     const db = client.db( "MUGS")  ;
-    ;
-    cursor = db.collection('mug_groups').dropIndex( { "urlname" : 1 }, function( err, res ) {
+
+    db.collection('mug_groups').indexInformation( function( err, res ) {
         if ( err ) {
             throw err ;
         } else {
             console.log( res );
         }
+        client.close() ;
     });
+    console.log( "indexInformation") ;
 
-    client.close() ;
 })
 

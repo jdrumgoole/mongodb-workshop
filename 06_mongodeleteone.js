@@ -12,10 +12,7 @@ MongoClient.connect(url, function(err, client) {
         console.log("Successfully connected to server: ", url );
     }
 
-    //console.log( db ) ;
-    // Find some documents in our collection
-
-    db = client.db( "MUGS" ) ;
+    db = client.db( "test" ) ;
     db.collection('test').deleteOne({ "hello" : "World!"}, function(err, res ) {
 
         if ( err ) {
@@ -24,10 +21,12 @@ MongoClient.connect(url, function(err, client) {
         } else {
             console.log( `deleted ${ res.deletedCount } document` ) ;;
         }
+        // Close the client
+        client.close();
     });
+    console.log( "deleteOne") ;
 
-    // Close the client
-    client.close();
+
 
     // Declare success
     console.log("Called deleteOne()");

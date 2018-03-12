@@ -1,7 +1,10 @@
-var MongoClient = require('mongodb').MongoClient,
-    assert = require('assert');
+var MongoClient = require('mongodb').MongoClient
 
 var url = 'mongodb://localhost:27017/MUGS';
+
+var printURL = function( doc ) {
+    console.log( doc.urlname )
+};
 
 MongoClient.connect(url, function(err, client) {
 
@@ -16,17 +19,12 @@ MongoClient.connect(url, function(err, client) {
     // Find some documents in our collection
 
     db = client.db( "MUGS" ) ;
-    db.collection('mug_groups').findOne({}, function(err, doc ) {
+    cursor = db.collection('mug_groups').find({}) ;
 
-        // Print the documents returned
-       console.log( doc ) ;
-    });
-
-    // Close the client
-    client.close();
+    cursor.forEach( printURL, () => client.close() ) ;
 
     // Declare success
-    console.log("Called findOne()");
+    console.log("find");
 });
 
 

@@ -30,13 +30,11 @@ MongoClient.connect(url, function(err, client) {
         } else {
             console.log(`Inserted ${res.insertedCount} doc(s)` );
         }
+        // Close the client
+        client.close();
     }) ;
 
-    // Close the client
-    client.close();
-
-    // Declare success
-    console.log("Called insertMany()");
+    console.log("insertMany");
 });
 
 
