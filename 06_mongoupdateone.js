@@ -14,8 +14,8 @@ MongoClient.connect(url, function(err, client) {
 
     db = client.db( "MUGS" ) ;
 
-    updater = { "$set" : { 'registration_url' : "eventbrite"}}
-    db.collection( "mug_groups" ).updateOne( { "urlname" : "DublinMUG"}, updater, ( err, res ) => {
+    updater = { "$set" : { 'registration_url' : "elephant"}}
+    db.collection( "mug_groups" ).updateOne( { "urlname" : "DublinMUG" }, updater, ( err, res ) => {
         if ( err ) {
             throw err ;
         } else {

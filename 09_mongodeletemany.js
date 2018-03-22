@@ -13,7 +13,7 @@ MongoClient.connect(url, function(err, client) {
 
 
     db = client.db( "test" ) ;
-    db.collection('test').deleteMany({ "hello" : "World!"}, function(err, res ) {
+    db.collection('test').deleteMany({}, function(err, res ) {
 
         if ( err ) {
             console.log( err ) ;

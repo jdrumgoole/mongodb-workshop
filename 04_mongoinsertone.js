@@ -13,7 +13,7 @@ MongoClient.connect( uri, function(err, client) {
     }
 
     db = client.db( "test" ) ;
-    db.collection('test').insertOne({ "hello" : "World!"}, function(err, res ) {
+    db.collection('test').insertOne({ "hello" : "World X!"}, function(err, res ) {
 
         if ( err ) {
             console.log( err ) ;
