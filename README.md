@@ -23,7 +23,7 @@ JD10Gen:mongodb-workshop jdrumgoole$
 `
 
 
-Install (Python[https://www.python.org/downloads/] (this code has been tested with python 2.7)
+Install (Python)[https://www.python.org/downloads/] (this code has been tested with python 2.7)
 
 Install [Mtools](https://github.com/rueckstiess/mtools). If you have
 installed python you can install mtools by using the Python package
@@ -52,24 +52,24 @@ Many of the scripts in the workshop expect the **MUGS** database and
 
 ## Scripts
 
-`01_mongoclient.js` : Basic client that connects to a MongoDB Server
-`02_mongofindone.js` : Simple query returning a single document.
-`03_mongofindmany.js` : Query that returns several documents using a cursor
-`04_mongoinsertone.js` : Inserting a single document
-`05_mongoinsertmany.js` : Inserting mutiple documents
-`06_mongoupdateone.js` : Update a document in place
-`07_mongoupdatemany.js` : Update several documents in place
-`08_mongodeletelone.js` : Delete a single document
-`09_mongodeletemany.js` : Delete multiple documents
-`10_mongocreateindex.js` : Create a (btree) index on a collection
-`11_mongoindexinformation.js`: Get information about indexes
-`12_mongodropindex.js` : Remove an index
-`13_mongoaggregate.js` : Use the MongoDB aggregation framework
-`14_send_data.py` : Python program to create multiple clients for the
+1. `01_mongoclient.js` : Basic client that connects to a MongoDB Server
+2. `02_mongofindone.js` : Simple query returning a single document.
+3. `03_mongofindmany.js` : Query that returns several documents using a cursor
+4. `04_mongoinsertone.js` : Inserting a single document
+5. `05_mongoinsertmany.js` : Inserting mutiple documents
+6. `06_mongoupdateone.js` : Update a document in place
+7. `07_mongoupdatemany.js` : Update several documents in place
+8. `08_mongodeletelone.js` : Delete a single document
+9. `09_mongodeletemany.js` : Delete multiple documents
+10. `10_mongocreateindex.js` : Create a (btree) index on a collection
+11. `11_mongoindexinformation.js`: Get information about indexes
+12. `12_mongodropindex.js` : Remove an index
+13. `13_mongoaggregate.js` : Use the MongoDB aggregation framework
+14. `14_send_data.py` : Python program to create multiple clients for the
 change stream.
-`15_mongochangestream.js`: Node.js client to respond to change stream events
-`atlas_changestream.sh` : Start a Node.js client for an Atlas database
-`send_data_to_atlas.sh` : Write data to a MongoDB Atlas database.
+15. `15_mongochangestream.js`: Node.js client to respond to change stream events
+16. `atlas_changestream.sh` : Start a Node.js client for an Atlas database
+17. `send_data_to_atlas.sh` : Write data to a MongoDB Atlas database.
 
 ## Connecting to Atlas
 See [my blog post](https://blog.joedrumgoole.com/2018/03/22/connecting-to-mongodb-atlas/) for more details on connecting to Atlas databases. 
