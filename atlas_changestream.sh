@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node 14_mongochangestream.js --uri mongodb+srv://santander:bancobanco@bancosantanderworkshop-ffp4c.mongodb.net/IOTDB
+node 15_mongochangestream.js --uri mongodb+srv://jdrumgoole:jdjkdr775@opendata-rgl39.mongodb.net

@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-python 14_send_data.py --procs 4 --host mongodb+srv://santander:bancobanco@bancosantanderworkshop-ffp4c.mongodb.net/IOTDB
+# To 
+python 14_send_data.py --procs 8 --host mongodb+srv://jdrumgoole:jdjkdr775@opendata-rgl39.mongodb.net/
