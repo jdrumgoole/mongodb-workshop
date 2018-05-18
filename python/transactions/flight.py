@@ -1,38 +1,73 @@
 
+from _datetime import datetime
+from transactions.event_log import Event_Log
+
+class Person(object):
+
+    def __init__(self, first_name: str=None, last_name: str=None, DOB: str=None):
+        self._first_name = first_name
+        self._last_name = last_name
+        self._DOB = DOB
+
+    def dict(self):
+        return {"first_name": self._first_name,
+                "last_name": self._last_name,
+                "DOB": self._DOB}
 
 class Seat(object):
 
     def __init__(self, flight_no, seat_no):
+        self._flight_no = flight_no
+        self._seat_no   = seat_no
+        self._ts        = datetime.utcnow()
 
-        self._seat = { "flight": flight_no, "seat" : seat_no}
 
     def dict(self):
-        return self._seat
+        return { "flight_no" : self._flight_no,
+                 "seat_no"   : self._seat_no,
+                 "ts"        : self._ts}
 
-class Flight(object):
 
-    def __init__(self, database):
-        self._seat_collection = database["seats"]
-        self._seats = []
-        self._seat_collection.insert( { "dummy": "nonce"}) #force collection into existence
 
-    def collection(self):
-        return self._seat_collection
+class Allocated_Seat(Seat):
 
-    @staticmethod
-    def make_flight( flight_no, seat_rows, seat_letters):
+    def __init__(self, flight_no, seat_no, person ):
+        super().__init__( flight_no, seat_no )
+        self._person = person
+
+    def dict(self):
+        d = super().dict()
+        d[ "person" ] = self._person.dict()
+        return d
+
+
+class Seat_Log(Event_Log):
+
+    def __init__(self, collection_name="seat_log"):
+        super().__init__(collection_name)
+
+    def add_flight(self, flight_no: str, seat_rows: int, seat_letters: list) -> list:
 
         seats = []
         for i in range(1, seat_rows+1):
             for l in seat_letters :
                 seats.append( Seat( flight_no, "{}{}".format(i,l)).dict())
 
+        self.insert_many(seats)
+
         return seats
 
-    def no_txn_insert(self, seats):
-        return self._seat_collection.insert_many(self._seats)
+    def allocate_seat(self, flight_no: str, seat_no: object, person: Person) -> object:
+        """
 
-    def no_txn_make_flight(self, flight_no, seat_rows, seat_letters):
+        :rtype: object
+        """
+        allocated_seat = Allocated_Seat( flight_no, seat_no, person)
+        self.insert_one( allocated_seat.dict())
+        return allocated_seat
 
-        self._seats = Flight.make_flight( flight_no, seat_rows, seat_letters)
-        return self.no_txn_insert(self._seats)
+
+    def deallocate_seat(self, flight_no, seat_no):
+        seat = Seat( flight_no, seat_no)
+        self._collection.insert_one(seat.dict())
+        return seat
